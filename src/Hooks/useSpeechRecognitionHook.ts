@@ -5,6 +5,7 @@ let recognition: any = null;
 if ("webkitSpeechRecognition" in window) {
     recognition = new webkitSpeechRecognition();
     recognition.continuous = true;
+    recognition.interimResults =true;
     recognition.lang = "ru-RU"
 }
 
@@ -18,8 +19,7 @@ const useSpeechRecognition = () => {
         recognition.onresult = (event: SpeechRecognitionEvent) => {
             console.log('onresult event: ', event);
             setText(event.results[0][0].transcript)
-            recognition.stop();
-            setIsListening(false);
+
         }
     }, [])
 
@@ -27,6 +27,7 @@ const useSpeechRecognition = () => {
         setText('');
         setIsListening(true);
         recognition.start()
+
     }
     const  stopListening = () => {
         setIsListening(false);

@@ -11,7 +11,9 @@ const Main = () => {
             {hasRecognitionSupport ? (
                 <>
                     <div>
-                        <button onClick={startListening}>Start</button>
+                        <button onClick={isListening ? stopListening : startListening}>
+                            {isListening ? "Stop": "Start"}
+                        </button>
                     </div>
 
                     {isListening ? <div> Слушаем...</div>: null}
